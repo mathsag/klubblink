@@ -420,12 +420,12 @@
           <div class="laptop-foot"></div>
         </div>
         <div class="slide-controls">
-          <button class="slide-btn" onclick="adminSlider.prev()">&#8592;</button>
+          <button class="slide-btn" onclick="if(window.adminSlider)window.adminSlider.prev()">&#8592;</button>
           <div class="slide-info">
             <span class="slide-label" id="admin-label"></span>
             <span class="slide-dots" id="admin-dots"></span>
           </div>
-          <button class="slide-btn" onclick="adminSlider.next()">&#8594;</button>
+          <button class="slide-btn" onclick="if(window.adminSlider)window.adminSlider.next()">&#8594;</button>
         </div>
         <p class="slide-desc" id="admin-desc"></p>
       </div>
@@ -439,12 +439,12 @@
           <div class="phone-home-bar"></div>
         </div>
         <div class="slide-controls">
-          <button class="slide-btn" onclick="appSlider.prev()">&#8592;</button>
+          <button class="slide-btn" onclick="if(window.appSlider)window.appSlider.prev()">&#8592;</button>
           <div class="slide-info">
             <span class="slide-label" id="app-label"></span>
             <span class="slide-dots" id="app-dots"></span>
           </div>
-          <button class="slide-btn" onclick="appSlider.next()">&#8594;</button>
+          <button class="slide-btn" onclick="if(window.appSlider)window.appSlider.next()">&#8594;</button>
         </div>
         <p class="slide-desc" id="app-desc"></p>
       </div>
@@ -621,29 +621,61 @@
 </script>
 
 <script>
-const adminSlides = [{"src":"admin1.png","label":"Dashboard","desc":"Oversikt over klubbens aktivitet og hurtiglenker"},{"src":"admin2.png","label":"Rabatter","desc":"Administrer rabatter med drag-and-drop og statusfilter"},{"src":"admin3.png","label":"Rediger rabatt","desc":"Full redigeringsflyt med live forhåndsvisning"},{"src":"admin8.png","label":"Send push-varsel","desc":"Varsle alle klubbmedlemmer med ett klikk"},{"src":"admin4.png","label":"Statistikk","desc":"Visninger, kopieringer og konverteringsrate"},{"src":"admin5.png","label":"Statistikk – graf","desc":"Detaljert graf per rabatt med historisk utvikling"},{"src":"admin6.png","label":"Partnere","desc":"Alle sponsorer med logo og kontaktinfo"},{"src":"admin7.png","label":"Nytt innlegg","desc":"Publiser nyheter direkte til appen"}];
-const appSlides = [{"src":"IMG_2123.PNG","label":"Innlogging","desc":"Logg inn med klubbkoden – ingen individuell registrering"},{"src":"IMG_2125.PNG","label":"Hjem","desc":"Utvalgte rabatter og nye partnere på forsiden"},{"src":"IMG_2126.PNG","label":"Rabattliste","desc":"Alle tilbud med POPULÆR og NY-merking"},{"src":"IMG_2127.PNG","label":"Rabattdetalj","desc":"Koden vises tydelig og kopieres med ett trykk"},{"src":"IMG_2124.PNG","label":"Innlegg","desc":"Nyheter og kunngjøringer fra klubben"}];
+const adminSlides = [
+  {"src":"admin1.png","label":"Dashboard","desc":"Oversikt over klubbens aktivitet og hurtiglenker"},
+  {"src":"admin2.png","label":"Rabatter","desc":"Administrer rabatter med drag-and-drop og statusfilter"},
+  {"src":"admin3.png","label":"Rediger rabatt","desc":"Full redigeringsflyt med live forhåndsvisning"},
+  {"src":"admin8.png","label":"Send push-varsel","desc":"Varsle alle klubbmedlemmer med ett klikk"},
+  {"src":"admin4.png","label":"Statistikk","desc":"Visninger, kopieringer og konverteringsrate"},
+  {"src":"admin5.png","label":"Statistikk - graf","desc":"Detaljert graf per rabatt med historisk utvikling"},
+  {"src":"admin6.png","label":"Partnere","desc":"Alle sponsorer med logo og kontaktinfo"},
+  {"src":"admin7.png","label":"Nytt innlegg","desc":"Publiser nyheter direkte til appen"}
+];
+const appSlides = [
+  {"src":"IMG_2123.PNG","label":"Innlogging","desc":"Logg inn med klubbkoden - ingen individuell registrering"},
+  {"src":"IMG_2125.PNG","label":"Hjem","desc":"Utvalgte rabatter og nye partnere pa forsiden"},
+  {"src":"IMG_2126.PNG","label":"Rabattliste","desc":"Alle tilbud med POPULAER og NY-merking"},
+  {"src":"IMG_2127.PNG","label":"Rabattdetalj","desc":"Koden vises tydelig og kopieres med ett trykk"},
+  {"src":"IMG_2124.PNG","label":"Innlegg","desc":"Nyheter og kunngjoeringer fra klubben"}
+];
 
 function makeSlider(slides, imgId, labelId, descId, dotsId) {
-  let current = 0;
-  const img = document.getElementById(imgId);
-  const lbl = document.getElementById(labelId);
-  const desc = document.getElementById(descId);
-  const dotsEl = document.getElementById(dotsId);
+  var current = 0;
+  var img = document.getElementById(imgId);
+  var lbl = document.getElementById(labelId);
+  var desc = document.getElementById(descId);
+  var dotsEl = document.getElementById(dotsId);
 
-  slides.forEach((_, i) => {
-    const d = document.createElement('span');
+  slides.forEach(function(_, i) {
+    var d = document.createElement('span');
     d.className = 'slide-dot' + (i === 0 ? ' active' : '');
-    d.onclick = () => go(i);
+    d.onclick = function() { go(i); };
     dotsEl.appendChild(d);
   });
 
   function go(n) {
     current = (n + slides.length) % slides.length;
     img.style.opacity = '0';
-    setTimeout(() => {
+    setTimeout(function() {
       img.src = slides[current].src;
       img.style.opacity = '1';
     }, 150);
     lbl.textContent = slides[current].label;
-    desc.textContent = slides[current]
+    desc.textContent = slides[current].desc;
+    dotsEl.querySelectorAll('.slide-dot').forEach(function(d, i) {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  go(0);
+  return { prev: function() { go(current - 1); }, next: function() { go(current + 1); } };
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  window.adminSlider = makeSlider(adminSlides, 'admin-img', 'admin-label', 'admin-desc', 'admin-dots');
+  window.appSlider = makeSlider(appSlides, 'app-img', 'app-label', 'app-desc', 'app-dots');
+});
+</script>
+
+</body>
+</html>
