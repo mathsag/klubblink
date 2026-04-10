@@ -337,6 +337,25 @@
       .laptop-frame { max-width: 100%; }
       .phone-frame { width: 170px; }
     }
+
+    /* LIGHTBOX */
+    #lightbox {
+      display: none; position: fixed; inset: 0; z-index: 1000;
+      background: rgba(0,0,0,0.88); align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    #lightbox-img {
+      max-width: 90vw; max-height: 90vh;
+      border-radius: 12px; box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+      object-fit: contain;
+    }
+    #lightbox-close {
+      position: fixed; top: 20px; right: 28px;
+      color: white; font-size: 32px; cursor: pointer; line-height: 1;
+      opacity: 0.7; transition: opacity 0.2s;
+    }
+    #lightbox-close:hover { opacity: 1; }
+    .laptop-frame, .phone-frame { cursor: zoom-in; }
 </style>
 </head>
 <body>
@@ -414,7 +433,7 @@
         <div class="screenshot-label">Admin-panel</div>
         <h3>Full kontroll for klubbadmin</h3>
         <p>Opprett rabatter, se statistikk, administrer partnere og send push-varsler direkte fra nettleseren.</p>
-        <div class="laptop-frame">
+        <div class="laptop-frame" id="admin-frame">
           <div class="laptop-screen"><img id="admin-img" src="" alt="Admin screenshot" /></div>
           <div class="laptop-base"></div>
           <div class="laptop-foot"></div>
@@ -433,7 +452,7 @@
         <div class="screenshot-label">Mobilapp</div>
         <h3>Enkel og intuitiv for medlemmene</h3>
         <p>Medlemmene logger inn med klubbkoden og finner alle rabatter på ett sted.</p>
-        <div class="phone-frame">
+        <div class="phone-frame" id="app-frame">
           <div class="phone-notch"></div>
           <div class="phone-screen"><img id="app-img" src="" alt="App screenshot" /></div>
           <div class="phone-home-bar"></div>
@@ -620,6 +639,11 @@
   reveals.forEach(el => observer.observe(el));
 </script>
 
+<div id="lightbox">
+  <span id="lightbox-close" onclick="closeLightbox()">&#x2715;</span>
+  <img id="lightbox-img" src="" alt="" />
+</div>
+
 <script>
 const adminSlides = [
   {"src":"admin1.png","label":"Dashboard","desc":"Oversikt over klubbens aktivitet og hurtiglenker"},
@@ -639,12 +663,19 @@ const appSlides = [
   {"src":"IMG_2124.PNG","label":"Innlegg","desc":"Nyheter og kunngjoeringer fra klubben"}
 ];
 
-function makeSlider(slides, imgId, labelId, descId, dotsId) {
+function makeSlider(slides, imgId, labelId, descId, dotsId, frameId) {
   var current = 0;
   var img = document.getElementById(imgId);
   var lbl = document.getElementById(labelId);
   var desc = document.getElementById(descId);
   var dotsEl = document.getElementById(dotsId);
+  var frame = document.getElementById(frameId);
+
+  // Preload all images
+  slides.forEach(function(s) {
+    var pre = new Image();
+    pre.src = s.src;
+  });
 
   slides.forEach(function(_, i) {
     var d = document.createElement('span');
@@ -653,13 +684,17 @@ function makeSlider(slides, imgId, labelId, descId, dotsId) {
     dotsEl.appendChild(d);
   });
 
+  // Click image to open lightbox
+  if (frame) {
+    frame.style.cursor = 'zoom-in';
+    frame.addEventListener('click', function() {
+      openLightbox(slides[current].src, slides[current].label);
+    });
+  }
+
   function go(n) {
     current = (n + slides.length) % slides.length;
-    img.style.opacity = '0';
-    setTimeout(function() {
-      img.src = slides[current].src;
-      img.style.opacity = '1';
-    }, 150);
+    img.src = slides[current].src;
     lbl.textContent = slides[current].label;
     desc.textContent = slides[current].desc;
     dotsEl.querySelectorAll('.slide-dot').forEach(function(d, i) {
@@ -671,9 +706,30 @@ function makeSlider(slides, imgId, labelId, descId, dotsId) {
   return { prev: function() { go(current - 1); }, next: function() { go(current + 1); } };
 }
 
+function openLightbox(src, label) {
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lightbox-img');
+  lbImg.src = src;
+  lb.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
 document.addEventListener('DOMContentLoaded', function() {
-  window.adminSlider = makeSlider(adminSlides, 'admin-img', 'admin-label', 'admin-desc', 'admin-dots');
-  window.appSlider = makeSlider(appSlides, 'app-img', 'app-label', 'app-desc', 'app-dots');
+  window.adminSlider = makeSlider(adminSlides, 'admin-img', 'admin-label', 'admin-desc', 'admin-dots', 'admin-frame');
+  window.appSlider = makeSlider(appSlides, 'app-img', 'app-label', 'app-desc', 'app-dots', 'app-frame');
+
+  document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this) closeLightbox();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeLightbox();
+  });
 });
 </script>
 
