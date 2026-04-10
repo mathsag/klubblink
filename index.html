@@ -354,7 +354,7 @@
   </div>
   <div style="display:flex;align-items:center;gap:12px;">
     <a href="https://admin.klubblink.no" style="font-size:14px;font-weight:500;color:var(--navy);text-decoration:none;opacity:0.6;transition:opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.6">Admin</a>
-    <a href="mailto:hei@klubblink.no" class="nav-cta">Kom i gang</a>
+    <a href="/cdn-cgi/l/email-protection#147c717d547f78617676787d7a7f3a7a7b" class="nav-cta">Kom i gang</a>
   </div>
 </nav>
 
@@ -363,7 +363,7 @@
   <h1>Smartere sponsorater.<br><em>Bedre fordeler. Mer til klubben.</em></h1>
   <p class="hero-sub">KlubbLink kobler idrettsklubb med lokale bedrifter. Medlemmene får eksklusive fordeler, sponsorene får tilgang til en engasjert lokal målgruppe, og klubben får en ny inntektskilde.</p>
   <div class="hero-actions">
-    <a href="mailto:hei@klubblink.no" class="btn-primary">Ta kontakt</a>
+    <a href="/cdn-cgi/l/email-protection#2d4548446d4641584f4f41444346034342" class="btn-primary">Ta kontakt</a>
     <a href="#hvordan" class="btn-ghost">Se hvordan det fungerer</a>
   </div>
   <div class="hero-props">
@@ -543,7 +543,7 @@
       <div class="pilot-cta-card reveal">
         <h3>Bli pilotklubb</h3>
         <p>Vi har begrenset kapasitet i pilotfasen. Ta kontakt nå for å sikre plass til din klubb.</p>
-        <a href="mailto:hei@klubblink.no" class="btn-gold">Ta kontakt</a>
+        <a href="/cdn-cgi/l/email-protection#2c4449456c4740594e4e40454247024243" class="btn-gold">Ta kontakt</a>
         <p class="pilot-note">Gratis i pilotperioden. Ingen bindingstid.</p>
       </div>
     </div>
@@ -570,7 +570,7 @@
         <div class="saleshelp-divider"></div>
         <p>En innovativ digital plattform er et sterkere salgsargument overfor bedrifter enn tradisjonelle sponsorat. Det er lettere å si ja når effekten er målbar.</p>
         <div class="saleshelp-divider"></div>
-        <a href="mailto:hei@klubblink.no" class="btn-primary" style="align-self:flex-start;margin-top:4px;">Snakk med oss</a>
+        <a href="/cdn-cgi/l/email-protection#a6cec3cfe6cdcad3c4c4cacfc8cd88c8c9" class="btn-primary" style="align-self:flex-start;margin-top:4px;">Snakk med oss</a>
       </div>
     </div>
   </div>
@@ -593,7 +593,7 @@
     <h2 class="reveal">Klar for en ny<br><em>inntektskilde?</em></h2>
     <p class="reveal reveal-d1">Ta kontakt, så setter vi opp en uforpliktende samtale om hva KlubbLink kan gjøre for din klubb.</p>
     <div class="cta-actions reveal reveal-d2">
-      <a href="mailto:hei@klubblink.no" class="btn-primary">Send oss en e-post</a>
+      <a href="/cdn-cgi/l/email-protection#aac2cfc3eac1c6dfc8c8c6c3c4c184c4c5" class="btn-primary">Send oss en e-post</a>
       <a href="https://admin.klubblink.no" class="btn-outline">Se admin-panelet</a>
     </div>
   </div>
@@ -603,12 +603,12 @@
   <span class="footer-logo">KlubbLink</span>
   <p>© 2026 KlubbLink. Alle rettigheter forbeholdt.</p>
   <div class="footer-links">
-    <a href="mailto:hei@klubblink.no">hei@klubblink.no</a>
+    <a href="/cdn-cgi/l/email-protection#b7dfd2def7dcdbc2d5d5dbded9dc99d9d8"><span class="__cf_email__" data-cfemail="432b262a03282f3621212f2a2d286d2d2c">[email&#160;protected]</span></a>
     <a href="https://admin.klubblink.no">Admin-panel</a>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
   const reveals = document.querySelectorAll('.reveal');
@@ -646,19 +646,4 @@ function makeSlider(slides, imgId, labelId, descId, dotsId) {
       img.style.opacity = '1';
     }, 150);
     lbl.textContent = slides[current].label;
-    desc.textContent = slides[current].desc;
-    dotsEl.querySelectorAll('.slide-dot').forEach((d, i) => {
-      d.classList.toggle('active', i === current);
-    });
-  }
-
-  go(0);
-  return { prev: () => go(current - 1), next: () => go(current + 1) };
-}
-
-const adminSlider = makeSlider(adminSlides, 'admin-img', 'admin-label', 'admin-desc', 'admin-dots');
-const appSlider = makeSlider(appSlides, 'app-img', 'app-label', 'app-desc', 'app-dots');
-</script>
-
-</body>
-</html>
+    desc.textContent = slides[current]
