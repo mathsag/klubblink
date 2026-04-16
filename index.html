@@ -46,6 +46,60 @@
     .nav-cta { background: var(--navy); color: white; border: none; border-radius: 8px; padding: 10px 22px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; text-decoration: none; transition: background 0.2s, transform 0.2s; }
     .nav-cta:hover { background: var(--navy-light); transform: translateY(-1px); }
 
+    /* HAMBURGER */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 6px 4px;
+      z-index: 101;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--navy);
+      transition: all 0.3s;
+      border-radius: 1px;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 60px; left: 0; right: 0;
+      background: rgba(236,234,228,0.98);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(26,39,68,0.07);
+      padding: 8px 24px 24px;
+      z-index: 99;
+      flex-direction: column;
+      box-shadow: 0 8px 32px rgba(26,39,68,0.08);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(26,39,68,0.07);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--navy);
+      text-decoration: none;
+    }
+    .mobile-menu .mobile-cta {
+      background: var(--navy) !important;
+      color: white !important;
+      padding: 14px 20px !important;
+      border-radius: 8px;
+      text-align: center;
+      margin-top: 12px;
+      border-bottom: none !important;
+    }
+
     .hero {
       min-height: 100vh;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -134,68 +188,35 @@
     .screenshot-block h3 { font-size: 18px; font-weight: 700; color: var(--navy); line-height: 1.3; }
     .screenshot-block > p { font-size: 13px; color: var(--muted); line-height: 1.6; }
 
-    /* LAPTOP FRAME */
-    .laptop-frame { width: 100%; max-width: 480px; margin: 28px auto 0; }
+    .laptop-frame { width: 100%; max-width: 480px; margin: 28px auto 0; cursor: zoom-in; }
     .laptop-screen {
       background: #1a1a2e; border-radius: 12px 12px 0 0;
       border: 8px solid #2a2a3e; border-bottom: none;
       overflow: hidden; aspect-ratio: 16/10;
     }
-    .laptop-screen img {
-      width: 100%; height: 100%; object-fit: cover; object-position: top;
-      display: block; transition: opacity 0.25s ease;
-    }
-    .laptop-base {
-      background: linear-gradient(to bottom, #2a2a3e, #222230);
-      height: 14px; border-radius: 0 0 4px 4px;
-      border: 1px solid #1a1a2e; border-top: none;
-    }
-    .laptop-foot {
-      background: #1e1e2e; height: 5px; border-radius: 0 0 8px 8px;
-      margin: 0 10%; box-shadow: 0 3px 10px rgba(0,0,0,0.3);
-    }
+    .laptop-screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: opacity 0.25s ease; }
+    .laptop-base { background: linear-gradient(to bottom, #2a2a3e, #222230); height: 14px; border-radius: 0 0 4px 4px; border: 1px solid #1a1a2e; border-top: none; }
+    .laptop-foot { background: #1e1e2e; height: 5px; border-radius: 0 0 8px 8px; margin: 0 10%; box-shadow: 0 3px 10px rgba(0,0,0,0.3); }
 
-    /* PHONE FRAME */
     .phone-frame {
       width: 200px; margin: 28px auto 0;
       background: #1a1a2e; border-radius: 36px;
       padding: 14px 8px 20px;
       box-shadow: 0 0 0 2px #2a2a3e, 0 20px 60px rgba(26,39,68,0.2), 0 0 0 6px #111120;
+      cursor: zoom-in;
     }
-    .phone-notch {
-      width: 60px; height: 8px; background: #111120;
-      border-radius: 0 0 8px 8px; margin: 0 auto 8px;
-    }
+    .phone-notch { width: 60px; height: 8px; background: #111120; border-radius: 0 0 8px 8px; margin: 0 auto 8px; }
     .phone-screen { border-radius: 24px; overflow: hidden; background: #eee; aspect-ratio: 9/19.5; }
-    .phone-screen img {
-      width: 100%; height: 100%; object-fit: cover; object-position: top;
-      display: block; transition: opacity 0.25s ease;
-    }
-    .phone-home-bar {
-      width: 60px; height: 4px; background: rgba(255,255,255,0.25);
-      border-radius: 2px; margin: 12px auto 0;
-    }
+    .phone-screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: opacity 0.25s ease; }
+    .phone-home-bar { width: 60px; height: 4px; background: rgba(255,255,255,0.25); border-radius: 2px; margin: 12px auto 0; }
 
-    /* SLIDE CONTROLS */
-    .slide-controls {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-top: 20px; gap: 12px;
-    }
-    .slide-btn {
-      background: white; border: 1.5px solid var(--beige-dark);
-      border-radius: 8px; width: 36px; height: 36px;
-      cursor: pointer; font-size: 16px; color: var(--navy);
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s, border-color 0.2s; flex-shrink: 0;
-    }
+    .slide-controls { display: flex; align-items: center; justify-content: space-between; margin-top: 20px; gap: 12px; }
+    .slide-btn { background: white; border: 1.5px solid var(--beige-dark); border-radius: 8px; width: 36px; height: 36px; cursor: pointer; font-size: 16px; color: var(--navy); display: flex; align-items: center; justify-content: center; transition: background 0.2s, border-color 0.2s; flex-shrink: 0; }
     .slide-btn:hover { background: var(--navy); color: white; border-color: var(--navy); }
     .slide-info { text-align: center; flex: 1; }
     .slide-label { display: block; font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
     .slide-dots { display: flex; gap: 5px; justify-content: center; flex-wrap: wrap; }
-    .slide-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--beige-dark); transition: background 0.2s, transform 0.2s; cursor: pointer;
-    }
+    .slide-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--beige-dark); transition: background 0.2s, transform 0.2s; cursor: pointer; }
     .slide-dot.active { background: var(--navy); transform: scale(1.35); }
     .slide-desc { font-size: 12px; color: var(--muted); line-height: 1.5; text-align: center; margin-top: 10px; min-height: 32px; }
 
@@ -215,11 +236,7 @@
     .avtaler { background: var(--beige); }
     .avtaler-intro { max-width: 680px; margin-bottom: 64px; }
     .avtaler-grid { display: flex; flex-direction: column; gap: 24px; }
-    .avtale {
-      background: white; border-radius: 20px; overflow: hidden;
-      border: 1px solid var(--beige-dark); display: grid; grid-template-columns: 280px 1fr;
-      transition: box-shadow 0.3s;
-    }
+    .avtale { background: white; border-radius: 20px; overflow: hidden; border: 1px solid var(--beige-dark); display: grid; grid-template-columns: 280px 1fr; transition: box-shadow 0.3s; }
     .avtale:hover { box-shadow: 0 8px 40px rgba(26,39,68,0.08); }
     .avtale.featured { background: var(--navy); border-color: var(--navy); }
     .avtale-left { padding: 36px 32px; border-right: 1px solid var(--beige-dark); }
@@ -303,6 +320,14 @@
     .reveal-d2 { transition-delay: 0.2s; }
     .reveal-d3 { transition-delay: 0.3s; }
 
+    #lightbox { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.88); align-items: center; justify-content: center; padding: 24px; gap: 16px; }
+    #lightbox-img { max-width: 82vw; max-height: 88vh; border-radius: 12px; box-shadow: 0 32px 80px rgba(0,0,0,0.5); object-fit: contain; transition: opacity 0.15s ease; }
+    #lightbox-close { position: fixed; top: 20px; right: 28px; color: white; font-size: 32px; cursor: pointer; line-height: 1; opacity: 0.7; transition: opacity 0.2s; background: none; border: none; }
+    #lightbox-close:hover { opacity: 1; }
+    #lightbox-prev, #lightbox-next { background: rgba(255,255,255,0.12); border: none; color: white; font-size: 24px; width: 52px; height: 52px; border-radius: 50%; cursor: pointer; flex-shrink: 0; transition: background 0.2s; display: flex; align-items: center; justify-content: center; }
+    #lightbox-prev:hover, #lightbox-next:hover { background: rgba(255,255,255,0.25); }
+    #lightbox-label { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.6); font-size: 13px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+
     @media (max-width: 900px) {
       h2.title { max-width: 100% !important; }
       .subtitle { max-width: 100% !important; }
@@ -317,92 +342,37 @@
       .pilot-cta-card, .saleshelp-visual { padding: 28px 20px; }
       .hero-props { border-radius: 12px; }
       .hero-prop { padding: 20px 18px; }
-      .footer-links { flex-direction: column; gap: 12px; }
-      .nav-cta { padding: 9px 16px; font-size: 13px; }
       nav { padding: 16px 24px; }
       nav.scrolled { padding: 12px 24px; }
       .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .nav-admin-desktop { display: none; }
+      .hamburger { display: flex; }
       section { padding: 64px 20px; }
       .hero { padding: 100px 20px 64px; }
       .hero-props { grid-template-columns: 1fr; }
       .how-step { grid-template-columns: 1fr; gap: 12px; }
-
-      /* Screenshots: stack vertically, phone frame first */
       .screenshots-grid { grid-template-columns: 1fr; gap: 56px; }
       .screenshot-block:first-child { order: 2; }
       .screenshot-block:last-child { order: 1; }
       .laptop-frame { max-width: 100%; }
       .phone-frame { width: 200px; }
-
-      /* Slide controls on mobile */
       .slide-controls { margin-top: 16px; }
       .slide-btn { width: 40px; height: 40px; font-size: 18px; }
-
-      /* Avtaler */
       .avtale { grid-template-columns: 1fr; }
-      .avtale-left { border-right: none; border-bottom: 1px solid var(--beige-dark); }
+      .avtale-left { border-right: none; border-bottom: 1px solid var(--beige-dark); padding: 24px 20px; }
       .avtale.featured .avtale-left { border-bottom-color: rgba(255,255,255,0.08); }
       .avtale-right { grid-template-columns: 1fr; gap: 16px; padding: 24px 20px; }
-      .avtale-left { padding: 24px 20px; }
-
-      /* Win-win */
-      .winwin-grid { grid-template-columns: 1fr; }
-
-      /* Pilot + saleshelp */
       .pilot-inner { grid-template-columns: 1fr; gap: 40px; }
       .saleshelp-inner { grid-template-columns: 1fr; gap: 40px; }
-
-      /* CTA */
       .cta-section { padding: 64px 20px; }
-
-      /* Footer */
       footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; }
-
-      /* Lightbox on mobile */
+      .footer-links { flex-direction: column; gap: 12px; }
       #lightbox-img { max-width: 95vw; max-height: 85vh; }
       #lightbox-close { top: 12px; right: 16px; font-size: 28px; }
-      .pilot-inner, .saleshelp-inner { grid-template-columns: 1fr; gap: 40px; }
-      .cta-section { padding: 72px 24px; }
-      footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
-      .laptop-frame { max-width: 100%; }
-      .phone-frame { width: 170px; }
-    }
-
-    /* LIGHTBOX */
-    #lightbox {
-      display: none; position: fixed; inset: 0; z-index: 1000;
-      background: rgba(0,0,0,0.88); align-items: center; justify-content: center;
-      padding: 24px; gap: 16px;
-    }
-    #lightbox-img {
-      max-width: 82vw; max-height: 88vh;
-      border-radius: 12px; box-shadow: 0 32px 80px rgba(0,0,0,0.5);
-      object-fit: contain; transition: opacity 0.15s ease;
-    }
-    #lightbox-close {
-      position: fixed; top: 20px; right: 28px;
-      color: white; font-size: 32px; cursor: pointer; line-height: 1;
-      opacity: 0.7; transition: opacity 0.2s; background: none; border: none;
-    }
-    #lightbox-close:hover { opacity: 1; }
-    #lightbox-prev, #lightbox-next {
-      background: rgba(255,255,255,0.12); border: none; color: white;
-      font-size: 24px; width: 52px; height: 52px; border-radius: 50%;
-      cursor: pointer; flex-shrink: 0; transition: background 0.2s;
-      display: flex; align-items: center; justify-content: center;
-    }
-    #lightbox-prev:hover, #lightbox-next:hover { background: rgba(255,255,255,0.25); }
-    #lightbox-label {
-      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-      color: rgba(255,255,255,0.6); font-size: 13px; font-weight: 600;
-      letter-spacing: 0.05em; text-transform: uppercase;
-    }
-    .laptop-frame, .phone-frame { cursor: zoom-in; }
-    @media (max-width: 900px) {
-      #lightbox-img { max-width: 95vw; max-height: 80vh; }
       #lightbox-prev, #lightbox-next { width: 40px; height: 40px; font-size: 18px; }
     }
-</style>
+  </style>
 </head>
 <body>
 
@@ -418,17 +388,29 @@
     <a href="#pilot">Pilot</a>
   </div>
   <div style="display:flex;align-items:center;gap:12px;">
-    <a href="https://admin.klubblink.no" style="font-size:14px;font-weight:500;color:var(--navy);text-decoration:none;opacity:0.6;transition:opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.6">Admin</a>
-    <a href="/cdn-cgi/l/email-protection#147c717d547f78617676787d7a7f3a7a7b" class="nav-cta">Kom i gang</a>
+    <a href="https://admin.klubblink.no" class="nav-admin-desktop" style="font-size:14px;font-weight:500;color:var(--navy);text-decoration:none;opacity:0.6;transition:opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.6">Admin</a>
+    <a href="mailto:kontakt@klubblink.no" class="nav-cta">Kom i gang</a>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Meny">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#hvordan" onclick="closeMobileMenu()">Slik fungerer det</a>
+  <a href="#alle-vinner" onclick="closeMobileMenu()">Alle vinner</a>
+  <a href="#avtaler" onclick="closeMobileMenu()">Avtalemodeller</a>
+  <a href="#pilot" onclick="closeMobileMenu()">Pilot</a>
+  <a href="https://admin.klubblink.no" onclick="closeMobileMenu()">Admin-panel</a>
+  <a href="mailto:kontakt@klubblink.no" onclick="closeMobileMenu()" class="mobile-cta">Kom i gang</a>
+</div>
 
 <section class="hero">
   <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span>Digital plattform for norsk idrett</div>
   <h1>Smartere sponsorater.<br><em>Bedre fordeler. Mer til klubben.</em></h1>
   <p class="hero-sub">KlubbLink kobler idrettsklubb med lokale bedrifter. Medlemmene får eksklusive fordeler, sponsorene får tilgang til en engasjert lokal målgruppe, og klubben får en ny inntektskilde.</p>
   <div class="hero-actions">
-    <a href="/cdn-cgi/l/email-protection#2d4548446d4641584f4f41444346034342" class="btn-primary">Ta kontakt</a>
+    <a href="mailto:kontakt@klubblink.no" class="btn-primary">Ta kontakt</a>
     <a href="#hvordan" class="btn-ghost">Se hvordan det fungerer</a>
   </div>
   <div class="hero-props">
@@ -447,22 +429,10 @@
       <p class="subtitle">KlubbLink er bygget for å kreve lite av klubben. Plattformen håndterer det tekniske, dere høster inntektene.</p>
     </div>
     <div class="how-steps reveal reveal-d1">
-      <div class="how-step">
-        <div class="how-step-left"><div class="how-step-tag">Oppsett</div><div class="how-step-label">Vi setter opp klubben</div></div>
-        <div class="how-step-right"><h3>Vi oppretter klubben og setter opp profilen</h3><p>Vi registrerer klubben i KlubbLink og klargjør admin-panelet. Deretter får klubbens administratorer tilgang og kan selv legge inn rabatter, administrere innhold og følge statistikk. Vi bistår gjerne underveis om det er ønskelig.</p></div>
-      </div>
-      <div class="how-step">
-        <div class="how-step-left"><div class="how-step-tag">Sponsorer</div><div class="how-step-label">Rekruttering av partnere</div></div>
-        <div class="how-step-right"><h3>Lokale bedrifter inviteres som partnere</h3><p>KlubbLink gjør sponsorer aktive, ikke bare synlige. I stedet for en logo på et banner får bedriften en direkte kanal til medlemmene gjennom tilbud og kommunikasjon i appen. Det gir målbar verdi for sponsor og gjør sponsoratet betydelig enklere å selge.</p></div>
-      </div>
-      <div class="how-step">
-        <div class="how-step-left"><div class="how-step-tag">For medlemmene</div><div class="how-step-label">Enkel innlogging</div></div>
-        <div class="how-step-right"><h3>Medlemmene logger inn med klubbkoden</h3><p>Klubben får en unik klubbkode som deles med alle medlemmene. De laster ned appen, skriver inn koden, og har umiddelbart tilgang til alle rabatter. Ingen individuell registrering er nødvendig for å komme i gang.</p></div>
-      </div>
-      <div class="how-step">
-        <div class="how-step-left"><div class="how-step-tag">Resultat</div><div class="how-step-label">Inntekt og statistikk</div></div>
-        <div class="how-step-right"><h3>Avtalen mellom klubb og bedrift bestemmer inntekten</h3><p>Inntekten til klubben varierer avhengig av hvilken avtale som er inngått med den enkelte bedrift. Det kan være en andel av salget, en fast sum per måned, eller en kombinasjon. Statistikken viser alt i sanntid.</p></div>
-      </div>
+      <div class="how-step"><div class="how-step-left"><div class="how-step-tag">Oppsett</div><div class="how-step-label">Vi setter opp klubben</div></div><div class="how-step-right"><h3>Vi oppretter klubben og setter opp profilen</h3><p>Vi registrerer klubben i KlubbLink og klargjør admin-panelet. Deretter får klubbens administratorer tilgang og kan selv legge inn rabatter, administrere innhold og følge statistikk.</p></div></div>
+      <div class="how-step"><div class="how-step-left"><div class="how-step-tag">Sponsorer</div><div class="how-step-label">Rekruttering av partnere</div></div><div class="how-step-right"><h3>Lokale bedrifter inviteres som partnere</h3><p>KlubbLink gjør sponsorer aktive, ikke bare synlige. I stedet for en logo på et banner får bedriften en direkte kanal til medlemmene gjennom tilbud og kommunikasjon i appen.</p></div></div>
+      <div class="how-step"><div class="how-step-left"><div class="how-step-tag">For medlemmene</div><div class="how-step-label">Enkel innlogging</div></div><div class="how-step-right"><h3>Medlemmene logger inn med klubbkoden</h3><p>Klubben får en unik klubbkode som deles med alle medlemmene. De laster ned appen, skriver inn koden, og har umiddelbart tilgang til alle rabatter.</p></div></div>
+      <div class="how-step"><div class="how-step-left"><div class="how-step-tag">Resultat</div><div class="how-step-label">Inntekt og statistikk</div></div><div class="how-step-right"><h3>Avtalen mellom klubb og bedrift bestemmer inntekten</h3><p>Inntekten varierer avhengig av hvilken avtale som er inngått. Det kan være en andel av salget, en fast sum per måned, eller en kombinasjon. Statistikken viser alt i sanntid.</p></div></div>
     </div>
   </div>
 </section>
@@ -481,15 +451,11 @@
         <p>Opprett rabatter, se statistikk, administrer partnere og send push-varsler direkte fra nettleseren.</p>
         <div class="laptop-frame" id="admin-frame">
           <div class="laptop-screen"><img id="admin-img" src="" alt="Admin screenshot" /></div>
-          <div class="laptop-base"></div>
-          <div class="laptop-foot"></div>
+          <div class="laptop-base"></div><div class="laptop-foot"></div>
         </div>
         <div class="slide-controls">
           <button class="slide-btn" onclick="if(window.adminSlider)window.adminSlider.prev()">&#8592;</button>
-          <div class="slide-info">
-            <span class="slide-label" id="admin-label"></span>
-            <span class="slide-dots" id="admin-dots"></span>
-          </div>
+          <div class="slide-info"><span class="slide-label" id="admin-label"></span><span class="slide-dots" id="admin-dots"></span></div>
           <button class="slide-btn" onclick="if(window.adminSlider)window.adminSlider.next()">&#8594;</button>
         </div>
         <p class="slide-desc" id="admin-desc"></p>
@@ -505,10 +471,7 @@
         </div>
         <div class="slide-controls">
           <button class="slide-btn" onclick="if(window.appSlider)window.appSlider.prev()">&#8592;</button>
-          <div class="slide-info">
-            <span class="slide-label" id="app-label"></span>
-            <span class="slide-dots" id="app-dots"></span>
-          </div>
+          <div class="slide-info"><span class="slide-label" id="app-label"></span><span class="slide-dots" id="app-dots"></span></div>
           <button class="slide-btn" onclick="if(window.appSlider)window.appSlider.next()">&#8594;</button>
         </div>
         <p class="slide-desc" id="app-desc"></p>
@@ -525,33 +488,9 @@
       <p class="subtitle">KlubbLink er bygget slik at alle som deltar har en reell grunn til å gjøre det. Jo mer aktive de er, jo bedre fungerer det for alle.</p>
     </div>
     <div class="winwin-grid">
-      <div class="win-card reveal reveal-d1">
-        <div class="win-card-top"><div class="win-who">Idrettsklubb</div><h3>Inntekt som vokser med engasjement</h3></div>
-        <div class="win-card-body"><div class="win-points">
-          <div class="win-point"><div class="win-point-check">✓</div><p>En ny inntektskilde som ikke krever dugnadsarbeid fra foreldrene</p></div>
-          <div class="win-point"><div class="win-point-check">✓</div><p>Jo mer aktive medlemmene er, jo mer tjener klubben. Et naturlig samspill</p></div>
-          <div class="win-point"><div class="win-point-check">✓</div><p>Dashboard med statistikk over inntekter og rabattbruk i sanntid</p></div>
-          <div class="win-point"><div class="win-point-check">✓</div><p>Noe konkret å tilby medlemmene som styrker tilhørighetsfølelsen</p></div>
-        </div></div>
-      </div>
-      <div class="win-card reveal reveal-d2">
-        <div class="win-card-top"><div class="win-who">Lokal bedrift</div><h3>Målrettet markedsføring som betaler seg</h3></div>
-        <div class="win-card-body"><div class="win-points">
-          <div class="win-point"><div class="win-point-check">✓</div><p>Betaler kun når avtalen tilsier det. Ingen risiko ved lav aktivitet</p></div>
-          <div class="win-point"><div class="win-point-check">✓</div><p>Direkte tilgang til kjøpesterke, lokale familier som handler i nærområdet</p></div>
-          <div class="win-point"><div class="win-point-check">✓</div><p>Lokal goodwill. Å støtte idretten er positivt for omdømmet i lokalsamfunnet</p></div>
-          <div class="win-point"><div class="win-point-check">✓</div><p>Full statistikk over visninger, klikk og innløste koder</p></div>
-        </div></div>
-      </div>
-      <div class="win-card reveal reveal-d3">
-        <div class="win-card-top"><div class="win-who">Klubbmedlem</div><h3>Fordeler som gir mening i hverdagen</h3></div>
-        <div class="win-card-body"><div class="win-points">
-          <div class="win-point"><div class="win-point-check">✓</div><p>Eksklusive rabatter kun tilgjengelig for klubbens egne medlemmer</p></div>
-          <div class="win-point"><div class="win-point-check">✓</div><p>Handel som ellers ville skjedd uansett bidrar nå direkte til klubben</p></div>
-          <div class="win-point"><div class="win-point-check">✓</div><p>Enkel app uten fysiske kort eller manuell registrering</p></div>
-          <div class="win-point"><div class="win-point-check">✓</div><p>Lokale tilbud fra bedrifter i nærområdet. Relevant og praktisk</p></div>
-        </div></div>
-      </div>
+      <div class="win-card reveal reveal-d1"><div class="win-card-top"><div class="win-who">Idrettsklubb</div><h3>Inntekt som vokser med engasjement</h3></div><div class="win-card-body"><div class="win-points"><div class="win-point"><div class="win-point-check">✓</div><p>En ny inntektskilde som ikke krever dugnadsarbeid fra foreldrene</p></div><div class="win-point"><div class="win-point-check">✓</div><p>Jo mer aktive medlemmene er, jo mer tjener klubben. Et naturlig samspill</p></div><div class="win-point"><div class="win-point-check">✓</div><p>Dashboard med statistikk over inntekter og rabattbruk i sanntid</p></div><div class="win-point"><div class="win-point-check">✓</div><p>Noe konkret å tilby medlemmene som styrker tilhørighetsgjøelsen</p></div></div></div></div>
+      <div class="win-card reveal reveal-d2"><div class="win-card-top"><div class="win-who">Lokal bedrift</div><h3>Målrettet markedsføring som betaler seg</h3></div><div class="win-card-body"><div class="win-points"><div class="win-point"><div class="win-point-check">✓</div><p>Betaler kun når avtalen tilsier det. Ingen risiko ved lav aktivitet</p></div><div class="win-point"><div class="win-point-check">✓</div><p>Direkte tilgang til kjøpesterke, lokale familier som handler i nærområdet</p></div><div class="win-point"><div class="win-point-check">✓</div><p>Lokal goodwill. Å støtte idretten er positivt for omdømmet i lokalsamfunnet</p></div><div class="win-point"><div class="win-point-check">✓</div><p>Full statistikk over visninger, klikk og innløste koder</p></div></div></div></div>
+      <div class="win-card reveal reveal-d3"><div class="win-card-top"><div class="win-who">Klubbmedlem</div><h3>Fordeler som gir mening i hverdagen</h3></div><div class="win-card-body"><div class="win-points"><div class="win-point"><div class="win-point-check">✓</div><p>Eksklusive rabatter kun tilgjengelig for klubbens egne medlemmer</p></div><div class="win-point"><div class="win-point-check">✓</div><p>Handel som ellers ville skjedd uansett bidrar nå direkte til klubben</p></div><div class="win-point"><div class="win-point-check">✓</div><p>Enkel app uten fysiske kort eller manuell registrering</p></div><div class="win-point"><div class="win-point-check">✓</div><p>Lokale tilbud fra bedrifter i nærområdet. Relevant og praktisk</p></div></div></div></div>
     </div>
   </div>
 </section>
@@ -564,30 +503,9 @@
       <p class="subtitle">Det finnes ikke én fasit for hvordan avtalen mellom klubb, bedrift og medlemmer ser ut. Her er tre vanlige modeller som kan brukes alene eller kombineres.</p>
     </div>
     <div class="avtaler-grid">
-      <div class="avtale reveal reveal-d1">
-        <div class="avtale-left"><div class="avtale-type">Modell A</div><h3>Andel av salget</h3></div>
-        <div class="avtale-right">
-          <div class="avtale-party"><div class="avtale-party-name">Klubben</div><div class="avtale-party-desc">Mottar en prosentandel av hvert kjøp som gjøres via appen. Inntekten varierer med aktivitet, men krever ingenting ekstra av klubben.</div></div>
-          <div class="avtale-party"><div class="avtale-party-name">Bedriften</div><div class="avtale-party-desc">Betaler kun når salg faktisk skjer. Ingen faste kostnader. Enkelt å si ja til fordi risikoen er minimal.</div></div>
-          <div class="avtale-party"><div class="avtale-party-name">Medlemmet</div><div class="avtale-party-desc">Får rabatt ved kjøp og vet at en andel av det som handles går tilbake til klubben. Motivasjon til å handle hos partnere.</div></div>
-        </div>
-      </div>
-      <div class="avtale featured reveal reveal-d2">
-        <div class="avtale-left"><div class="avtale-type">Modell B — Anbefalt</div><h3>Fast abonnement kombinert med salgsandel</h3></div>
-        <div class="avtale-right">
-          <div class="avtale-party"><div class="avtale-party-name">Klubben</div><div class="avtale-party-desc">Betaler et fast månedlig abonnement for plattformen og mottar i tillegg en andel av salg fra partnerbedriftene. Forutsigbar kostnad, variabel inntekt.</div></div>
-          <div class="avtale-party"><div class="avtale-party-name">Bedriften</div><div class="avtale-party-desc">Betaler en lav salgsandel ved faktiske kjøp. Forutsigbart og målbart. Kan enkelt justere rabattnivå etter hva som passer.</div></div>
-          <div class="avtale-party"><div class="avtale-party-name">Medlemmet</div><div class="avtale-party-desc">Opplever en aktiv og oppdatert rabattportal med god bredde av tilbud, fordi begge parter er motiverte til å holde det vedlike.</div></div>
-        </div>
-      </div>
-      <div class="avtale reveal reveal-d3">
-        <div class="avtale-left"><div class="avtale-type">Modell C</div><h3>Fast sponsoravtale</h3></div>
-        <div class="avtale-right">
-          <div class="avtale-party"><div class="avtale-party-name">Klubben</div><div class="avtale-party-desc">Mottar en fast sum fra bedriften, uavhengig av salgsvolum. Trygg og forutsigbar inntekt, gjerne kombinert med synlighet på trøye eller banner.</div></div>
-          <div class="avtale-party"><div class="avtale-party-name">Bedriften</div><div class="avtale-party-desc">Betaler en fast årssum og får eksponering i appen i tillegg til tradisjonell sponsorsynlighet. Enkelt å budsjettere og lett å kommunisere internt.</div></div>
-          <div class="avtale-party"><div class="avtale-party-name">Medlemmet</div><div class="avtale-party-desc">Får oversikt over hvilke bedrifter som støtter klubben, og tilgang til rabatter der avtalen inkluderer det.</div></div>
-        </div>
-      </div>
+      <div class="avtale reveal reveal-d1"><div class="avtale-left"><div class="avtale-type">Modell A</div><h3>Andel av salget</h3></div><div class="avtale-right"><div class="avtale-party"><div class="avtale-party-name">Klubben</div><div class="avtale-party-desc">Mottar en prosentandel av hvert kjøp som gjøres via appen. Inntekten varierer med aktivitet, men krever ingenting ekstra av klubben.</div></div><div class="avtale-party"><div class="avtale-party-name">Bedriften</div><div class="avtale-party-desc">Betaler kun når salg faktisk skjer. Ingen faste kostnader. Enkelt å si ja til fordi risikoen er minimal.</div></div><div class="avtale-party"><div class="avtale-party-name">Medlemmet</div><div class="avtale-party-desc">Får rabatt ved kjøp og vet at en andel av det som handles går tilbake til klubben.</div></div></div></div>
+      <div class="avtale featured reveal reveal-d2"><div class="avtale-left"><div class="avtale-type">Modell B — Anbefalt</div><h3>Fast abonnement kombinert med salgsandel</h3></div><div class="avtale-right"><div class="avtale-party"><div class="avtale-party-name">Klubben</div><div class="avtale-party-desc">Betaler et fast månedlig abonnement for plattformen og mottar i tillegg en andel av salg fra partnerbedriftene.</div></div><div class="avtale-party"><div class="avtale-party-name">Bedriften</div><div class="avtale-party-desc">Betaler en lav salgsandel ved faktiske kjøp. Forutsigbart og målbart.</div></div><div class="avtale-party"><div class="avtale-party-name">Medlemmet</div><div class="avtale-party-desc">Opplever en aktiv og oppdatert rabattportal med god bredde av tilbud.</div></div></div></div>
+      <div class="avtale reveal reveal-d3"><div class="avtale-left"><div class="avtale-type">Modell C</div><h3>Fast sponsoravtale</h3></div><div class="avtale-right"><div class="avtale-party"><div class="avtale-party-name">Klubben</div><div class="avtale-party-desc">Mottar en fast sum fra bedriften, uavhengig av salgsvolum. Trygg og forutsigbar inntekt.</div></div><div class="avtale-party"><div class="avtale-party-name">Bedriften</div><div class="avtale-party-desc">Betaler en fast årssum og får eksponering i appen. Enkelt å budsjettere.</div></div><div class="avtale-party"><div class="avtale-party-name">Medlemmet</div><div class="avtale-party-desc">Får oversikt over hvilke bedrifter som støtter klubben, og tilgang til rabatter der avtalen inkluderer det.</div></div></div></div>
     </div>
   </div>
 </section>
@@ -608,7 +526,7 @@
       <div class="pilot-cta-card reveal">
         <h3>Bli pilotklubb</h3>
         <p>Vi har begrenset kapasitet i pilotfasen. Ta kontakt nå for å sikre plass til din klubb.</p>
-        <a href="/cdn-cgi/l/email-protection#2c4449456c4740594e4e40454247024243" class="btn-gold">Ta kontakt</a>
+        <a href="mailto:kontakt@klubblink.no" class="btn-gold">Ta kontakt</a>
         <p class="pilot-note">Gratis i pilotperioden. Ingen bindingstid.</p>
       </div>
     </div>
@@ -630,12 +548,12 @@
       </div>
       <div class="saleshelp-visual reveal">
         <div class="saleshelp-tag">Pilotklubber</div>
-        <h3>Full salgsstøtte inkludert</h3>
+        <h3>Full salgssøtte inkludert</h3>
         <p>Pilotklubber får dedikert hjelp til å identifisere og lande sine første partnerbedrifter. Vi bruker vår erfaring med den digitale løsningen til å gjøre pitchen enkel og overbevisende.</p>
         <div class="saleshelp-divider"></div>
         <p>En innovativ digital plattform er et sterkere salgsargument overfor bedrifter enn tradisjonelle sponsorat. Det er lettere å si ja når effekten er målbar.</p>
         <div class="saleshelp-divider"></div>
-        <a href="/cdn-cgi/l/email-protection#a6cec3cfe6cdcad3c4c4cacfc8cd88c8c9" class="btn-primary" style="align-self:flex-start;margin-top:4px;">Snakk med oss</a>
+        <a href="mailto:kontakt@klubblink.no" class="btn-primary" style="align-self:flex-start;margin-top:4px;">Snakk med oss</a>
       </div>
     </div>
   </div>
@@ -646,10 +564,7 @@
     <div class="label reveal">Se det i aksjon</div>
     <h2 class="title reveal reveal-d1">En kort gjennomgang<br><em>av plattformen.</em></h2>
     <p class="subtitle reveal reveal-d2">Fra klubbregistrering til første rabatt. Vi viser deg hele flyten.</p>
-    <div class="video-placeholder reveal reveal-d3">
-      <div class="play-btn">&#9654;</div>
-      <span class="video-label">Instruksjonsvideo kommer snart</span>
-    </div>
+    <div class="video-placeholder reveal reveal-d3"><div class="play-btn">&#9654;</div><span class="video-label">Instruksjonsvideo kommer snart</span></div>
   </div>
 </section>
 
@@ -658,7 +573,7 @@
     <h2 class="reveal">Klar for en ny<br><em>inntektskilde?</em></h2>
     <p class="reveal reveal-d1">Ta kontakt, så setter vi opp en uforpliktende samtale om hva KlubbLink kan gjøre for din klubb.</p>
     <div class="cta-actions reveal reveal-d2">
-      <a href="/cdn-cgi/l/email-protection#aac2cfc3eac1c6dfc8c8c6c3c4c184c4c5" class="btn-primary">Send oss en e-post</a>
+      <a href="mailto:kontakt@klubblink.no" class="btn-primary">Send oss en e-post</a>
       <a href="https://admin.klubblink.no" class="btn-outline">Se admin-panelet</a>
     </div>
   </div>
@@ -668,22 +583,10 @@
   <span class="footer-logo">KlubbLink</span>
   <p>© 2026 KlubbLink. Alle rettigheter forbeholdt.</p>
   <div class="footer-links">
-    <a href="/cdn-cgi/l/email-protection#b7dfd2def7dcdbc2d5d5dbded9dc99d9d8"><span class="__cf_email__" data-cfemail="432b262a03282f3621212f2a2d286d2d2c">[email&#160;protected]</span></a>
+    <a href="mailto:kontakt@klubblink.no">kontakt@klubblink.no</a>
     <a href="https://admin.klubblink.no">Admin-panel</a>
   </div>
 </footer>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
-  reveals.forEach(el => observer.observe(el));
-</script>
 
 <div id="lightbox">
   <span id="lightbox-close" onclick="closeLightbox()">&#x2715;</span>
@@ -694,120 +597,113 @@
 </div>
 
 <script>
-const adminSlides = [
-  {"src":"admin1.png","label":"Dashboard","desc":"Oversikt over klubbens aktivitet og hurtiglenker"},
-  {"src":"admin2.png","label":"Rabatter","desc":"Administrer rabatter med drag-and-drop og statusfilter"},
-  {"src":"admin3.png","label":"Rediger rabatt","desc":"Full redigeringsflyt med live forhåndsvisning"},
-  {"src":"admin8.png","label":"Send push-varsel","desc":"Varsle alle klubbmedlemmer med ett klikk"},
-  {"src":"admin4.png","label":"Statistikk","desc":"Visninger, kopieringer og konverteringsrate"},
-  {"src":"admin5.png","label":"Statistikk - graf","desc":"Detaljert graf per rabatt med historisk utvikling"},
-  {"src":"admin6.png","label":"Partnere","desc":"Alle sponsorer med logo og kontaktinfo"},
-  {"src":"admin7.png","label":"Nytt innlegg","desc":"Publiser nyheter direkte til appen"}
-];
-const appSlides = [
-  {"src":"IMG_2123.PNG","label":"Innlogging","desc":"Logg inn med klubbkoden - ingen individuell registrering"},
-  {"src":"IMG_2125.PNG","label":"Hjem","desc":"Utvalgte rabatter og nye partnere pa forsiden"},
-  {"src":"IMG_2126.PNG","label":"Rabattliste","desc":"Alle tilbud med POPULAER og NY-merking"},
-  {"src":"IMG_2127.PNG","label":"Rabattdetalj","desc":"Koden vises tydelig og kopieres med ett trykk"},
-  {"src":"IMG_2124.PNG","label":"Innlegg","desc":"Nyheter og kunngjoeringer fra klubben"}
-];
-
-function makeSlider(slides, imgId, labelId, descId, dotsId, frameId) {
-  var current = 0;
-  var img = document.getElementById(imgId);
-  var lbl = document.getElementById(labelId);
-  var desc = document.getElementById(descId);
-  var dotsEl = document.getElementById(dotsId);
-  var frame = document.getElementById(frameId);
-
-  // Preload all images
-  slides.forEach(function(s) {
-    var pre = new Image();
-    pre.src = s.src;
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+    closeMobileMenu();
   });
 
-  slides.forEach(function(_, i) {
-    var d = document.createElement('span');
-    d.className = 'slide-dot' + (i === 0 ? ' active' : '');
-    d.onclick = function() { go(i); };
-    dotsEl.appendChild(d);
-  });
-
-  // Click image to open lightbox
-  if (frame) {
-    frame.style.cursor = 'zoom-in';
-    frame.addEventListener('click', function() {
-      openLightbox(slides[current].src, slides[current].label, slides, current);
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
     });
+  }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  function toggleMenu() {
+    document.getElementById('hamburger').classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
   }
 
-  function go(n) {
-    current = (n + slides.length) % slides.length;
-    img.src = slides[current].src;
-    lbl.textContent = slides[current].label;
-    desc.textContent = slides[current].desc;
-    dotsEl.querySelectorAll('.slide-dot').forEach(function(d, i) {
-      d.classList.toggle('active', i === current);
-    });
+  function closeMobileMenu() {
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('mobileMenu').classList.remove('open');
   }
 
-  go(0);
-  return { prev: function() { go(current - 1); }, next: function() { go(current + 1); } };
-}
+  const adminSlides = [
+    {src:"admin1.png",label:"Dashboard",desc:"Oversikt over klubbens aktivitet og hurtiglenker"},
+    {src:"admin2.png",label:"Rabatter",desc:"Administrer rabatter med drag-and-drop og statusfilter"},
+    {src:"admin3.png",label:"Rediger rabatt",desc:"Full redigeringsflyt med live forhåndsvisning"},
+    {src:"admin8.png",label:"Send push-varsel",desc:"Varsle alle klubbmedlemmer med ett klikk"},
+    {src:"admin4.png",label:"Statistikk",desc:"Visninger, kopieringer og konverteringsrate"},
+    {src:"admin5.png",label:"Statistikk - graf",desc:"Detaljert graf per rabatt med historisk utvikling"},
+    {src:"admin6.png",label:"Partnere",desc:"Alle sponsorer med logo og kontaktinfo"},
+    {src:"admin7.png",label:"Nytt innlegg",desc:"Publiser nyheter direkte til appen"}
+  ];
+  const appSlides = [
+    {src:"IMG_2123.PNG",label:"Innlogging",desc:"Logg inn med klubbkoden - ingen individuell registrering"},
+    {src:"IMG_2125.PNG",label:"Hjem",desc:"Utvalgte rabatter og nye partnere på forsiden"},
+    {src:"IMG_2126.PNG",label:"Rabattliste",desc:"Alle tilbud med POPULÆR og NY-merking"},
+    {src:"IMG_2127.PNG",label:"Rabattdetalj",desc:"Koden vises tydelig og kopieres med ett trykk"},
+    {src:"IMG_2124.PNG",label:"Innlegg",desc:"Nyheter og kunngjøringer fra klubben"}
+  ];
 
-var lbSlides = [];
-var lbCurrent = 0;
+  function makeSlider(slides, imgId, labelId, descId, dotsId, frameId) {
+    var current = 0;
+    var img = document.getElementById(imgId);
+    var lbl = document.getElementById(labelId);
+    var desc = document.getElementById(descId);
+    var dotsEl = document.getElementById(dotsId);
+    var frame = document.getElementById(frameId);
+    slides.forEach(s => { var p = new Image(); p.src = s.src; });
+    slides.forEach((_, i) => {
+      var d = document.createElement('span');
+      d.className = 'slide-dot' + (i === 0 ? ' active' : '');
+      d.onclick = () => go(i);
+      dotsEl.appendChild(d);
+    });
+    if (frame) frame.addEventListener('click', () => openLightbox(slides[current].src, slides[current].label, slides, current));
+    function go(n) {
+      current = (n + slides.length) % slides.length;
+      img.src = slides[current].src;
+      lbl.textContent = slides[current].label;
+      desc.textContent = slides[current].desc;
+      dotsEl.querySelectorAll('.slide-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+    go(0);
+    return { prev: () => go(current - 1), next: () => go(current + 1) };
+  }
 
-function openLightbox(src, label, slides, index) {
-  lbSlides = slides;
-  lbCurrent = index;
-  var lb = document.getElementById('lightbox');
-  document.getElementById('lightbox-img').src = src;
-  document.getElementById('lightbox-label').textContent = label;
-  lb.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-}
+  var lbSlides = [], lbCurrent = 0;
+  function openLightbox(src, label, slides, index) {
+    lbSlides = slides; lbCurrent = index;
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox-label').textContent = label;
+    document.getElementById('lightbox').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  function lightboxNav(dir) {
+    lbCurrent = (lbCurrent + dir + lbSlides.length) % lbSlides.length;
+    var img = document.getElementById('lightbox-img');
+    img.style.opacity = '0';
+    setTimeout(() => {
+      img.src = lbSlides[lbCurrent].src;
+      document.getElementById('lightbox-label').textContent = lbSlides[lbCurrent].label;
+      img.style.opacity = '1';
+    }, 120);
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').style.display = 'none';
+    document.body.style.overflow = '';
+  }
 
-function lightboxNav(dir) {
-  lbCurrent = (lbCurrent + dir + lbSlides.length) % lbSlides.length;
-  var img = document.getElementById('lightbox-img');
-  img.style.opacity = '0';
-  setTimeout(function() {
-    img.src = lbSlides[lbCurrent].src;
-    document.getElementById('lightbox-label').textContent = lbSlides[lbCurrent].label;
-    img.style.opacity = '1';
-  }, 120);
-}
-
-function closeLightbox() {
-  document.getElementById('lightbox').style.display = 'none';
-  document.body.style.overflow = '';
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-  window.adminSlider = makeSlider(adminSlides, 'admin-img', 'admin-label', 'admin-desc', 'admin-dots', 'admin-frame');
-  window.appSlider = makeSlider(appSlides, 'app-img', 'app-label', 'app-desc', 'app-dots', 'app-frame');
-
-  document.getElementById('lightbox').addEventListener('click', function(e) {
-    if (e.target === this) closeLightbox();
+  document.addEventListener('DOMContentLoaded', () => {
+    window.adminSlider = makeSlider(adminSlides, 'admin-img', 'admin-label', 'admin-desc', 'admin-dots', 'admin-frame');
+    window.appSlider = makeSlider(appSlides, 'app-img', 'app-label', 'app-desc', 'app-dots', 'app-frame');
+    document.getElementById('lightbox').addEventListener('click', e => { if (e.target === document.getElementById('lightbox')) closeLightbox(); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') lightboxNav(1);
+      if (e.key === 'ArrowLeft') lightboxNav(-1);
+    });
+    var touchStartX = 0;
+    document.getElementById('lightbox').addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+    document.getElementById('lightbox').addEventListener('touchend', e => {
+      var dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 50) lightboxNav(dx < 0 ? 1 : -1);
+    });
   });
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowRight') lightboxNav(1);
-    if (e.key === 'ArrowLeft') lightboxNav(-1);
-  });
-
-  // Swipe support
-  var touchStartX = 0;
-  document.getElementById('lightbox').addEventListener('touchstart', function(e) {
-    touchStartX = e.touches[0].clientX;
-  });
-  document.getElementById('lightbox').addEventListener('touchend', function(e) {
-    var dx = e.changedTouches[0].clientX - touchStartX;
-    if (Math.abs(dx) > 50) lightboxNav(dx < 0 ? 1 : -1);
-  });
-});
 </script>
 
 </body>
